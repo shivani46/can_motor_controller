@@ -1,0 +1,20 @@
+<!--
+  Starts the robot_can_sim.py simulator and the can_motor_controller node
+  together on the same vcan interface.
+
+  Requires vcan0 (or whichever can_interface arg you pass) to already be up:
+    ~/ros2_rust_ws/src/can_motor_controller/scripts/setup_vcan.sh up
+-->
+<launch>
+
+  <arg name="can_interface" default="vcan0" />
+
+  <executable cmd="python3 $(find-pkg-share can_motor_controller)/sim/robot_can_sim.py --channel $(var can_interface)"
+              name="robot_can_sim"
+              output="screen" />
+
+  <node pkg="can_motor_controller" exec="can_motor_controller" name="can_motor_controller" output="screen">
+    <param name="can_interface" value="$(var can_interface)" />
+  </node>
+
+</launch>

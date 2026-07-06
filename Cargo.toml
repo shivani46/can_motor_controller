@@ -1,0 +1,19 @@
+[package]
+name = "can_motor_controller"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = { version = "1", features = ["backtrace"] }
+rclrs = "0.7"
+geometry_msgs = "*"
+nav_msgs = "*"
+std_msgs = "*"
+builtin_interfaces = "*"
+socketcan = "3"
+
+# This specific version is compatible with Rust 1.75
+backtrace = "=0.3.74"
+
+[package.metadata.ros]
+install_to_share = ["launch", "sim"]
